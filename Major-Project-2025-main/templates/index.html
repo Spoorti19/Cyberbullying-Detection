@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in || Sign up form</title>
+    <!-- font awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    body{
+        background-image: url('https://th.bing.com/th/id/R.2814918bd889807ca1c1ea1639371fe1?rik=acbAOygAcMnXQQ&riu=http%3a%2f%2ffliipixel.com%2fimages%2fbackground.jpg&ehk=C%2fBuYxAQfmeGf2pG8HpNLqaIZyORrUnkRjNA41ImjKE%3d&risl=&pid=ImgRaw&r=0');
+        background-size: 100% 100vh;
+    }
+    img{
+        width: 80%;
+        margin: auto;
+    }
+    #row{
+        display: flex;
+    }
+    #col1{
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+    }
+    #col2{
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+    }
+    a{
+        background-color: rgb(85, 83, 83);
+        color: white;
+        padding: 15px 10px;
+        margin: 10px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 20px;
+        width: 30%;
+        text-align: center;
+        box-shadow: 1px 1px 2px white;
+    }
+    a:hover{
+        background-color: black;
+    }
+</style>
+<body>
+
+    <div class="container" id="row">
+        <div id="col1">
+            <img src="static/logo.png">
+        </div>
+        <div id="col2">
+            <a href="/signin">Sign In / Sign Up</a>
+        </div>
+    </div>
+</body>
+
+</html>

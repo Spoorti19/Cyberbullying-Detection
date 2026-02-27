@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in || Sign up form</title>
+    <!-- font awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- css stylesheet -->
+    <link rel="stylesheet" href="http://127.0.0.1:5000/static/login_register.css">
+</head>
+<style>body{
+    background-image: url('https://th.bing.com/th/id/R.2814918bd889807ca1c1ea1639371fe1?rik=acbAOygAcMnXQQ&riu=http%3a%2f%2ffliipixel.com%2fimages%2fbackground.jpg&ehk=C%2fBuYxAQfmeGf2pG8HpNLqaIZyORrUnkRjNA41ImjKE%3d&risl=&pid=ImgRaw&r=0');
+    background-size: 100% 100vh;
+}</style>
+<body>
+    <img src="static/logo.png" style="width: 300px;height: 50px;">
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="/signup" method="post" enctype="multipart/form-data">
+                <h1>Create Account</h1>
+                <div class="infield">
+                    <input type="text" placeholder="Name" name="your-name" required />
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="email" placeholder="Email" name="email-ID" required />
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="number" placeholder="Phone" name="phone" required />
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="password" class="form-control" placeholder="Password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required />
+                    <label ></label>
+                </div>
+                <div class="infield">
+                    <span>Date of birth</span>
+                    <input type="date" class="form-control" name="dob" required />
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="number" class="form-control" placeholder="Enter adhar number" name="adhar" required />
+                    <label></label>
+                </div>
+                <div class="infield">  
+                    <span>Adhar card</span>
+                    <input type="file" class="form-control" name="adhar" required />
+                    <label></label>
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="/signin" method="post">
+                <h1>Sign in</h1>
+                <div class="infield">
+                    <input type="email" placeholder="Email" name="email" required />
+                    <label></label>
+                </div>
+                <div class="infield">
+                    <input type="password" placeholder="Password" name="password" required />
+                    <label></label>
+                </div>
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+        <div class="overlay-container" id="overlayCon">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button>Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button>Sign Up</button>
+                </div>
+            </div>
+            <button id="overlayBtn"></button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        const container = document.getElementById('container');
+        const overlayCon = document.getElementById('overlayCon');
+        const overlayBtn = document.getElementById('overlayBtn');
+
+        overlayBtn.addEventListener('click', () => {
+            container.classList.toggle('right-panel-active');
+            overlayBtn.classList.remove('btnScaled');
+            window.requestAnimationFrame(() => {
+                overlayBtn.classList.add('btnScaled');
+            });
+        });
+
+        // Compare password and confirm password
+        const signupForm = document.querySelector('.sign-up-container form');
+        signupForm.addEventListener('submit', (event) => {
+            const password = signupForm.querySelector('input[name="password"]').value;
+            const confirmPassword = signupForm.querySelector('input[name="confirm-password"]').value;
+
+            if (password !== confirmPassword) {
+                event.preventDefault(); // Prevent form submission
+                alert('Passwords do not match. Please check again.');
+            }
+        });
+    </script>
+<script>
+    if('{{msg}}'){
+        alert('{{msg}}');
+    }
+</script>
+</body>
+
+</html>

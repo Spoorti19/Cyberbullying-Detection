@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Pharmatrack </title>
+    <link rel="stylesheet" href="http://127.0.0.1:5000/static/style.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <link rel="stylesheet" href="http://127.0.0.1:5000/static/css\\styles.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5000/static/css\\Responsive Admin Dashboard V.1.0.css">
+    <style>
+      :root {
+    --linear-grad: linear-gradient(to right, #141E30, #243B55);
+    --grad-clr1: #141E30;
+    --grad-clr2: #243B55;
+}
+      form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 50px;
+    width: 50%;
+    margin: auto;
+}
+.infield {
+    position: relative;
+    margin: 8px 0px;
+    width: 100%;
+}
+
+input, select{
+    width: 100%;
+    padding: 12px 8px;
+    background-color: #f3f3f3;
+    border: none;
+    outline: none;
+}
+
+label {
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    width: 0%;
+    height: 2px;
+    background: var(--linear-grad);
+    transition: 0.3s;
+}
+
+input:focus~label {
+    width: 100%;
+}
+button {
+    border-radius: 20px;
+    border: 1px solid var(--grad-clr1);
+    background: var(--grad-clr2);
+    color: #FFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.form-container button {
+    margin-top: 17px;
+    transition: 80ms ease-in;
+}
+
+.form-container button:hover {
+    background: #FFF;
+    color: var(--grad-clr1);
+}
+     </style>
+     <style>
+      /* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+}
+
+/* Table Headers */
+thead {
+    background-color: #4CAF50;
+    color: white;
+}
+
+th {
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 16px;
+}
+
+/* Table Rows */
+tbody tr {
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+    background-color: #ddd;
+}
+
+td {
+    padding: 10px 15px;
+    text-align: left;
+    font-size: 14px;
+}
+
+/* Alternate Row Colors */
+tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+/* Table Borders */
+th, td {
+    border: 1px solid #ddd;
+}
+
+/* Add some spacing around the table */
+table {
+    margin: 20px auto;
+    width: 80%;
+}
+
+/* Style for table when empty */
+tbody tr.empty-row {
+    text-align: center;
+    font-style: italic;
+    color: #777;
+}
+
+:root {
+    --linear-grad: linear-gradient(to right, #141E30, #243B55);
+    --grad-clr1: #141E30;
+    --grad-clr2: #243B55;
+}
+
+.btn{
+    border-radius: 5px;
+    border: 1px solid var(--grad-clr1);
+    background: var(--grad-clr2);
+    color: #FFF;
+    padding: 5px 10px;
+    text-decoration: none;
+}
+
+#row{
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  background-color: gray;
+  border-radius: 10px;
+  width: 50%;
+  margin: auto;
+}
+#col1{
+  width: 20%;
+}
+#col2{
+  width: 80%;
+}
+    </style>
+   </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class="bx bxs-capsule icon"></i>
+        <div class="logo_name">Pharmatrack</div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+        <a href="/home">
+          <i class="bx bx-home"></i>
+          <span class="links_name">Home</span>
+        </a>
+        <span class="tooltip">Home</span>
+      </li>
+
+      <li>
+        <a href="/profile">
+          <i class="bx bx-user"></i>
+          <span class="links_name">Profile</span>
+        </a>
+        <span class="tooltip">Profile</span>
+      </li>
+
+      
+   <li class="profile">
+       <div class="profile-details">
+          <img src="data:image/jpg;base64,{{result[-1]}}" alt="profileImg">
+          <div class="name_job">
+            <div class="name">{{result[1]}}</div>
+          </div>
+
+       <a href="/">
+          <i class="bx bx-log-out" id="log_out"></i>
+      </a>
+      <span class="tooltip">Logout</span>
+   </li>
+    </ul>
+  </div>
+  <section class="home-section"  style="padding: 50px;">
+      <div class="text">Welcome {{name}}</div>
+
+      <div class="form-container sign-up-container">
+          <div id="row" style="background-color: #ddd;">
+              <div id="col1" style="display: flex;flex-direction: column;justify-content: center;">
+                <img src="data:image/jpg;base64,{{result[-1]}}" style="width: 100%; border-radius: 50%;">
+              </div>
+              <div id="col2">
+                  <center><h3>Profile</h3></center>
+                  <table>
+                    <tr>
+                      <th>Name</th><td>{{result[1]}}</td>
+                    </tr>
+                    <tr>
+                      <th>Email</th><td>{{result[2]}}</td>
+                    </tr>
+                    <tr>
+                      <th>Phone</th><td>{{result[3]}}</td>
+                    </tr>
+                    <tr>
+                      <th>Password</th><td>{{result[4]}}</td>
+                    </tr>
+                    <tr>
+                      <th>Date of birth</th><td>{{result[5]}}</td>
+                    </tr>
+                    <tr>
+                      <th>Adhar Number</th><td>{{result[6]}}</td>
+                    </tr>
+                    <tr>
+                      <th>Score</th><td>{{score}}</td>
+                    </tr>
+                  </table>
+              </div>
+          </div>
+    </div>
+
+  </section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
+  <!-- Custom JS -->
+  <script src="http://127.0.0.1:5000/static/js\\scripts.js"></script>
+
+  <script>
+  let sidebar = document.querySelector(".sidebar");
+  let closeBtn = document.querySelector("#btn");
+  let searchBtn = document.querySelector(".bx-search");
+
+  closeBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("open");
+    menuBtnChange();//calling the function(optional)
+  });
+
+  searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+    sidebar.classList.toggle("open");
+    menuBtnChange(); //calling the function(optional)
+  });
+
+  // following are the code to change sidebar button(optional)
+  function menuBtnChange() {
+   if(sidebar.classList.contains("open")){
+     closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+   }else {
+     closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+   }
+  }
+  </script>
+  <script>
+    if('{{msg}}'){
+        alert('{{msg}}');
+    }
+</script>
+</body>
+</html>

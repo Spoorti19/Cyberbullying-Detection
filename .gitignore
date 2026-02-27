@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# VS Code / Visual Studio
+.vscode/
+.vs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Database
+*.db
+
+# Model / weight files
+*.npy
+*.pt
+*.pth
+*.h5
+
+# Executables
+*.exe
+
+# Logs
+*.log
+session.txt
+
+# Environment
+.env
+venv/

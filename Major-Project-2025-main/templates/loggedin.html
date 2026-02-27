@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Pharmatrack </title>
+    <link rel="stylesheet" href="http://127.0.0.1:5000/static/style.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+      body{
+        background-image: url('https://th.bing.com/th/id/R.2814918bd889807ca1c1ea1639371fe1?rik=acbAOygAcMnXQQ&riu=http%3a%2f%2ffliipixel.com%2fimages%2fbackground.jpg&ehk=C%2fBuYxAQfmeGf2pG8HpNLqaIZyORrUnkRjNA41ImjKE%3d&risl=&pid=ImgRaw&r=0');
+        background-size: 100% 100vh;
+    }
+    #row{
+      display: flex;
+      justify-content: space-around;
+    }
+    #col1{
+      width: 40%;
+      background-color: gray;
+      border-radius: 10px;
+      margin-top: 50px;
+    }
+    #col2{
+      width: 20%;
+      background-color: rgb(172, 171, 171);
+      margin-top: 50px;
+      border-radius: 10px;
+      padding: 40px;
+      text-align: justify;
+    }
+    #feed{
+      background-color: rgb(172, 171, 171);
+      border-radius: 10px;
+      margin: 40px;
+      padding: 20px;
+    }
+    #profile{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid gray;
+    }
+    textarea{
+      width: 85%;
+      background: transparent;
+      border: transparent;
+      color: white;
+      font-size: 20px;
+    }
+    textarea:focus {
+  outline: none;
+  border: none;
+}
+
+    input[type="submit"]{
+      width: 20%;
+      background-color: gray;
+      color: white;
+      border: 1px solid gray;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      font-size: 16px;
+      height: 7vh;
+      transition-property: transform;
+      transition-duration: 0.5s;
+      border-radius: 10px;
+    }
+    input[type="submit"]:hover{
+      transform: scale(1.1);
+    }
+    </style>
+   </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+        <div class="logo_name"><img src="static/logo.png" style="width: 100%;height: 30px;"></div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+          <a href="/home">
+            <i class="bx bx-home"></i>
+            <span class="links_name">Home</span>
+          </a>
+          <span class="tooltip">Home</span>
+        </li>
+
+        <li>
+          <a href="/profile">
+            <i class="bx bx-user"></i>
+            <span class="links_name">Profile</span>
+          </a>
+          <span class="tooltip">Profile</span>
+        </li>
+
+        
+     <li class="profile">
+         <div class="profile-details">
+            <img src="data:image/jpg;base64,{{result[-1]}}" alt="profileImg">
+            <div class="name_job">
+              <div class="name">{{result[1]}}</div>
+            </div>
+
+         <a href="/">
+            <i class="bx bx-log-out" id="log_out"></i>
+        </a>
+        <span class="tooltip">Logout</span>
+     </li>
+    </ul>
+  </div>
+  <section class="home-section">
+      <div id="row">
+          <div id="col1">
+              <form action="/post" id="feed" method="post" enctype="multipart/form-data">
+                  <div style="display: flex;justify-content: space-between;">
+                    <img src="data:image/jpg;base64,{{result[-1]}}" id="profile">
+                    <textarea name="feed">What is happening?</textarea>
+                  </div>
+                  <br><br>
+                  <div style="display: flex;justify-content: space-between;">
+                    <img id="image-to-trigger-file" src="https://th.bing.com/th/id/OIP.1VAUQAqwU_jh1CFPTwCvZgHaFw?w=253&h=196&c=7&r=0&o=5&dpr=1.5&pid=1.7" style="width: 35px;height:35px;cursor: pointer;border-radius: 5px;">
+                    <!-- Hidden file input -->
+                  <input type="file" id="file-input" name="file" style="display: none;">
+                    <input type="submit">
+                  </div>
+                </form>
+
+                {% for row in posts %}
+                <div id="feed">
+                  <div style="display: flex;">
+                    <img src="data:image/jpg;base64,{{row[-2]}}" id="profile"> &nbsp;&nbsp;&nbsp;
+                    <div style="font-size: 12px;color: white;">
+                      <span>{{row[1]}}</span><br>
+                      <span>{{row[-1]}}</span><br>
+                      {% if row[5] | float < 0.5 %}
+                        <span style="color: red;">Score : {{row[5]}}</span>
+                        {% else %}
+                        <span>Score : {{row[5]}}</span>
+                        {% endif %}
+                    </div>
+                  </div>
+                  <br>
+                  {% if row[3] == 'text' %}
+                    <h3 style="color: white;">{{row[4]}}</h3>
+                  {% else %}
+                  <img src="data:image/jpg;base64,{{row[4]}}" style="width: 100%;;border-radius: 10px;">
+                  {% endif %}
+                  <br><br>
+                  <div style="display: flex;justify-content: space-between;">
+                    <img class="Show" src="data:image/jpeg;base64,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" style="width: 30px;height:30px;cursor: pointer;;border-radius: 5px;">
+                  </div>
+                  <br>
+                  <div class="comments" style="display: none;">
+                    <form action="/comment" method="post">
+                      <input type="text" value="{{row[0]}}" name="ID" required style="display: none;" >
+                      <div style="display: flex;justify-content: space-between;">
+                        <input type="text" name="comment" style="width: 73%;padding: 10px;border-radius: 5px;background: #e7dede;border: none;">
+                      <input type="submit">
+                      </div>
+                    </form>
+                    <br>
+                    {% for row in comments[loop.index - 1] %}
+                    <div style="display: flex;">
+                      <img src="data:image/jpg;base64,{{row[-3]}}" id="profile" style="width: 30px;height: 30px;"> &nbsp;&nbsp;&nbsp;
+                      <div style="font-size: 10px;color: white;">
+                        <span>{{row[1]}}</span><br>
+                        <span>{{row[-2]}}</span><br>
+                        <span>{{row[2]}}</span><br>
+                        {% if row[-1] | float < 0.5 %}
+                        <span style="color: red;">Score : {{row[-1]}}</span>
+                        {% else %}
+                        <span>Score : {{row[-1]}}</span>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <br>
+                    {% endfor %}
+                  </div>
+                </div>
+                {% endfor %}
+          </div>
+          <div id="col2">
+            <center><h1>News feed</h1></center>
+
+          </div>
+      </div>
+      </div> 
+  </section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
+  <!-- Custom JS -->
+  <script src="http://127.0.0.1:5000/static/js\\scripts.js"></script>
+
+  <script>
+  let sidebar = document.querySelector(".sidebar");
+  let closeBtn = document.querySelector("#btn");
+  let searchBtn = document.querySelector(".bx-search");
+
+  closeBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("open");
+    menuBtnChange();//calling the function(optional)
+  });
+
+  searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+    sidebar.classList.toggle("open");
+    menuBtnChange(); //calling the function(optional)
+  });
+
+  // following are the code to change sidebar button(optional)
+  function menuBtnChange() {
+   if(sidebar.classList.contains("open")){
+     closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+   }else {
+     closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+   }
+  }
+  </script>
+  <script>
+    if('{{msg}}'){
+        alert('{{msg}}');
+    }
+
+    document.getElementById('image-to-trigger-file').addEventListener('click', function() {
+  document.getElementById('file-input').click(); // Trigger file input click when image is clicked
+});
+
+// Get all the buttons and comment sections by their classes
+const showButtons = document.querySelectorAll('.Show');
+const commentsSections = document.querySelectorAll('.comments');
+
+// Loop through each button and add an event listener
+showButtons.forEach((button, index) => {
+  button.addEventListener('click', function() {
+    const commentSection = commentsSections[index];
+    
+    // Toggle the display property of the corresponding comments section
+    if (commentSection.style.display === 'none') {
+      commentSection.style.display = 'block'; // Show the comments section
+    } else {
+      commentSection.style.display = 'none'; // Hide the comments section
+    }
+  });
+});
+
+</script>
+</body>
+</html>
