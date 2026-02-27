@@ -156,7 +156,7 @@ The system integrates automated moderation, a dynamic reputation score mechanism
 
 ## 👩‍💻 Author
 
-Harshitha S  
+Spoorti Halappanavar 
 B.E – Information Science & Engineering  
 Visvesvaraya Technological University  
 
